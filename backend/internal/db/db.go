@@ -10,7 +10,7 @@ var DB *sql.DB
 
 func Init() {
 	var err error
-	DB, err = sql.Open("sqlite3", "./recipes.db?_foreign_keys=on")
+	DB, err = sql.Open("sqlite3", "~/recipes.db?_foreign_keys=on")
 	if err != nil {
 		panic(err)
 	}

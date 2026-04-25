@@ -8,8 +8,7 @@ import { useState, useRef } from 'react';
  *   const { items, dragHandlers, isDragging } = useDragReorder(initialItems, onReorderEnd);
  *
  * - items:          current (possibly reordered) list — use this to render
- * - dragHandlers:   spread onto each draggable element as {...dragHandlers(index)}
- * - isDragging:     true while a drag is active (useful for cursor/style)
+ * - dragHandlers:   spread onto each draggable element as {...dragHandlers(index)}\n * - isDragging:     true while a drag is active (useful for cursor/style)
  * - onReorderEnd:   called with the new id order once the user drops
  */
 export function useDragReorder(initialItems, onReorderEnd) {
@@ -25,12 +24,13 @@ export function useDragReorder(initialItems, onReorderEnd) {
     setItems(resolved);
   };
 
-  // Keep items in sync when the source data changes (e.g. after refetch)
-  // but only when not mid-drag
+  // Keep items in sync when the source data changes (e.g. after refetch).
+  // Compare *sorted* ID sets so a drag-reorder (same IDs, different order)
+  // does NOT trigger a reset — only actual additions/deletions do.
   if (!isDragging && initialItems) {
-    const ids = itemsRef.current.map(i => i.id).join(',');
-    const newIds = initialItems.map(i => i.id).join(',');
-    if (ids !== newIds) setItemsAndRef(initialItems);
+    const sorted    = [...itemsRef.current].map(i => i.id).sort().join(',');
+    const newSorted = [...initialItems].map(i => i.id).sort().join(',');
+    if (sorted !== newSorted) setItemsAndRef(initialItems);
   }
 
   function dragHandlers(index) {
