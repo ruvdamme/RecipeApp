@@ -16,5 +16,5 @@ func main() {
 	handlers.Register(mux)
 
 	fmt.Println("Server running on :8080")
-	http.ListenAndServe("0.0.0.0:8080", mux)
+	http.ListenAndServe("127.0.0.1:8080", mux)
 }
