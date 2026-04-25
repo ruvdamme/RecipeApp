@@ -1,0 +1,93 @@
+~ $ rm -rf RecipeApp
+~ $ git clone https://github.com/ruvdamme/RecipeApp.git
+Cloning into 'RecipeApp'...
+remote: Enumerating objects: 66, done.
+remote: Counting objects: 100% (66/66), done.
+remote: Compressing objects: 100% (53/53), done.
+remote: Total 66 (delta 13), reused 62 (delta 9), pack-reused 0 (from 0)
+Receiving objects: 100% (66/66), 45.48 KiB | 500.00 KiB/s, done.
+Resolving deltas: 100% (13/13), done.
+~ $ cd RecipeApp/backend
+~/RecipeApp/backend $ go build
+~/RecipeApp/backend $ ls
+Makefile  go.mod  go.sum  internal  main.go  recipes-api
+~/RecipeApp/backend $ nohup ./recipes-api > backend.log 2>&1 &
+[3] 32731
+~/RecipeApp/backend $ ps
+  PID TTY          TIME CMD
+27164 pts/1    00:00:00 /data/data/com.termux/files/usr/bin/bash
+31534 pts/1    00:00:00 ./recipes-api
+32483 pts/1    00:00:04 node
+32500 pts/1    00:00:02 node
+32737 pts/1    00:00:00 ps
+[3]+  Done                       nohup ./recipes-api > backend.log 2>&1
+~/RecipeApp/backend $ kill 31534
+~/RecipeApp/backend $ kill 32483
+[1]-  Terminated                 nohup ./recipes-api > output.log 2<&1
+~/RecipeApp/backend $ ps
+  PID TTY          TIME CMD
+27164 pts/1    00:00:00 /data/data/com.termux/files/usr/bin/bash
+32739 pts/1    00:00:00 ps
+[2]+  Done                       nohup npx serve -s dist > frontend.log 2>&1  (wd: ~/RecipeApp/frontend)
+(wd now: ~/RecipeApp/backend)
+~/RecipeApp/backend $ nohup ./recipes-api > backend.log 2>&1 &
+[1] 32740
+~/RecipeApp/backend $ ps
+  PID TTY          TIME CMD
+27164 pts/1    00:00:00 /data/data/com.termux/files/usr/bin/bash
+32740 pts/1    00:00:00 ./recipes-api
+32747 pts/1    00:00:00 ps
+~/RecipeApp/backend $ cd ../frontend
+~/RecipeApp/frontend $ ls
+README.md  index.html  package-lock.json  package.json  postcss.config.js  src  tailwind.config.js  vite.config.js
+~/RecipeApp/frontend $ npm install
+
+added 129 packages, and audited 130 packages in 7s
+
+25 packages are looking for funding
+  run `npm fund` for details
+
+2 moderate severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+~/RecipeApp/frontend $ npm run build
+
+> recipes-frontend@0.1.0 build
+> vite build
+
+vite v5.4.21 building for production...
+✓ 37 modules transformed.
+dist/index.html                   0.39 kB │ gzip:  0.27 kB
+dist/assets/index-CEPbGMzt.css   17.25 kB │ gzip:  4.17 kB
+dist/assets/index-C6WD1XSA.js   168.60 kB │ gzip: 52.92 kB
+✓ built in 6.13s
+~/RecipeApp/frontend $ nohup npx serve -s dist > frontend.log 2>&1 &
+[2] 465
+~/RecipeApp/frontend $ ps
+  PID TTY          TIME CMD
+  465 pts/1    00:00:03 node
+  488 pts/1    00:00:00 ps
+27164 pts/1    00:00:00 /data/data/com.termux/files/usr/bin/bash
+32740 pts/1    00:00:00 ./recipes-api
+~/RecipeApp/frontend $
+
+
+
+
+
+
+
+
+ssh u0_a199@192.168.10.110 -p 8022
+
+
+
+
+
+
+
+
+
