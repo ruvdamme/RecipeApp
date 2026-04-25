@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRecipes } from '../hooks/useRecipes';
 import { useDragReorder } from '../hooks/useDragReorder';
 import * as api from '../api/client';
@@ -28,11 +28,7 @@ export default function RecipeList({ onSelect }) {
     }
   );
 
-  // Sync when recipes load/change from server
-  useEffect(() => {
-    if (recipes) setItems(recipes);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [recipes]);
+
 
   // ─── Create ─────────────────────────────────────────────────────────────────
   function handlePictureFile(file) {
@@ -146,7 +142,7 @@ export default function RecipeList({ onSelect }) {
                     <span className="text-sm font-medium leading-tight truncate">{r.name}</span>
                     <button
                       onClick={(e) => handleDelete(e, r.id)}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--text-muted)] hover:text-red-400 flex-shrink-0"
+                      className="text-[var(--text-muted)] hover:text-red-400 flex-shrink-0 transition-colors"
                       title="Delete"
                     >
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>

@@ -352,7 +352,7 @@ function ScreenshotStrip({ recipeId, screenshots, onChanged }) {
 
             <button
               onClick={async (e) => { e.stopPropagation(); await api.deleteScreenshot(recipeId, s.id); onChanged(); }}
-              className="absolute top-1 right-1 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 rounded-full p-0.5 text-white hover:text-red-400"
+              className="absolute top-1 right-1 z-10 transition-opacity bg-black/60 rounded-full p-0.5 text-white hover:text-red-400"
             >
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M18 6L6 18M6 6l12 12"/>
@@ -453,7 +453,7 @@ export default function RecipeDetail({ id, onBack }) {
                   try { await api.deletePicture(id); refetch(); showToast('Picture removed.'); }
                   catch (err) { showToast(err.message, 'error'); }
                 }}
-                className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 hover:bg-black/80 text-white rounded-full p-1.5"
+                className="absolute top-2 right-2 transition-opacity bg-black/60 hover:bg-black/80 text-white rounded-full p-1.5"
                 title="Remove picture"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

@@ -78,7 +78,7 @@ dist/assets/index-C6WD1XSA.js   168.60 kB │ gzip: 52.92 kB
 
 
 
-
+sshd
 
 
 ssh u0_a199@192.168.10.110 -p 8022
@@ -91,3 +91,116 @@ ssh u0_a199@192.168.10.110 -p 8022
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\Users\vanda>ssh u0_a199@192.168.10.110 -p 8022
+u0_a199@192.168.10.110's password:
+Welcome to Termux
+
+Docs:       https://doc.termux.com
+Community:  https://community.termux.com
+
+Working with packages:
+ - Search:  pkg search <query>
+ - Install: pkg install <package>
+ - Upgrade: pkg upgrade
+
+Report issues at https://bugs.termux.com
+~ $ git clone https://github.com/ruvdamme/RecipeApp.git
+Cloning into 'RecipeApp'...
+remote: Enumerating objects: 75, done.
+remote: Counting objects: 100% (75/75), done.
+remote: Compressing objects: 100% (56/56), done.
+remote: Total 75 (delta 18), reused 71 (delta 14), pack-reused 0 (from 0)
+Receiving objects: 100% (75/75), 46.99 KiB | 718.00 KiB/s, done.
+Resolving deltas: 100% (18/18), done.
+~ $ cd RecipeApp/backend
+~/RecipeApp/backend $ go build
+~/RecipeApp/backend $ pm2 restart api
+[PM2] Spawning PM2 daemon with pm2_home=/data/data/com.termux/files/home/.pm2
+[PM2] PM2 Successfully daemonized
+Use --update-env to update environment variables
+[PM2][ERROR] Process or Namespace api not found
+~/RecipeApp/backend $ ls
+Makefile  go.mod  go.sum  internal  main.go  recipes-api
+~/RecipeApp/backend $ pm2 list
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+~/RecipeApp/backend $ pm2 start ./recipes-api --name "api"
+[PM2] Starting /data/data/com.termux/files/home/RecipeApp/backend/recipes-api in fork_mode (1 instance)
+[PM2] Done.
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ api                │ fork     │ 0    │ online    │ 0%       │ 9.7mb    │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+~/RecipeApp/backend $ pm2 list
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ api                │ fork     │ 0    │ online    │ 0%       │ 9.7mb    │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+~/RecipeApp/backend $ pm2 save
+[PM2] Saving current process list...
+[PM2] Successfully saved in /data/data/com.termux/files/home/.pm2/dump.pm2
+~/RecipeApp/backend $ cd ../frontend
+~/RecipeApp/frontend $ ls
+README.md   package-lock.json  postcss.config.js  tailwind.config.js
+index.html  package.json       src                vite.config.js
+~/RecipeApp/frontend $ npm install
+
+added 129 packages, and audited 130 packages in 10s
+
+25 packages are looking for funding
+  run `npm fund` for details
+
+2 moderate severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+~/RecipeApp/frontend $ npm run build
+
+> recipes-frontend@0.1.0 build
+> vite build
+
+vite v5.4.21 building for production...
+✓ 37 modules transformed.
+dist/index.html                   0.39 kB │ gzip:  0.27 kB
+dist/assets/index-CEPbGMzt.css   17.25 kB │ gzip:  4.17 kB
+dist/assets/index-c1KBFMVC.js   168.61 kB │ gzip: 52.93 kB
+✓ built in 6.77s
+~/RecipeApp/frontend $ pm2 start "npx serve -s dist" --name "frontend"
+[PM2] Starting /data/data/com.termux/files/usr/bin/bash in fork_mode (1 instance)
+[PM2] Done.
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ api                │ fork     │ 0    │ online    │ 0%       │ 9.7mb    │
+│ 1  │ frontend           │ fork     │ 0    │ online    │ 0%       │ 1.3mb    │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+~/RecipeApp/frontend $ pm2 list
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ api                │ fork     │ 0    │ online    │ 0%       │ 9.7mb    │
+│ 1  │ frontend           │ fork     │ 0    │ online    │ 0%       │ 103.5mb  │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+~/RecipeApp/frontend $ pm2 save
+[PM2] Saving current process list...
+[PM2] Successfully saved in /data/data/com.termux/files/home/.pm2/dump.pm2
