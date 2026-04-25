@@ -10,7 +10,7 @@ export default defineConfig({
     // Proxy API calls to Go backend so no CORS issues in dev
     proxy: {
       '/recipes': {
-        target: 'http://127.0.0.1:8080',
+        target: 'http://127.0.0.1:8080', // for developing only
         changeOrigin: true,
       },
     },

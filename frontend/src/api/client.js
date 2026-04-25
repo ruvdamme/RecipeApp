@@ -3,8 +3,10 @@
  * All calls go through here.
  */
 
+const BASE_URL = 'http://127.0.0.1:8080'; // for production
+
 async function request(path, options = {}) {
-  const res = await fetch(`${path}`, options);
+  const res = await fetch(`${BASE_URL}${path}`, options);
   if (res.status === 204) return null;
   if (!res.ok) {
     const err = await res.json().catch(() => ({ error: res.statusText }));
