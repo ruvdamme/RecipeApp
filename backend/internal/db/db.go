@@ -2,6 +2,8 @@ package db
 
 import (
 	"database/sql"
+	"os"
+	"path/filepath"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -9,8 +11,13 @@ import (
 var DB *sql.DB
 
 func Init() {
-	var err error
-	DB, err = sql.Open("sqlite3", "~/recipes.db?_foreign_keys=on")
+	home, err := os.UserHomeDir()
+	if err != nil {
+		panic(err)
+	}
+	dbPath := filepath.Join(home, "recipes.db") + "?_foreign_keys=on"
+
+	DB, err = sql.Open("sqlite3", dbPath)
 	if err != nil {
 		panic(err)
 	}

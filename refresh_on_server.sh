@@ -12,3 +12,4 @@ npm install
 npm run build
 pm2 start "npx serve -s dist" --name "frontend"
 pm2 save
+cd ../..
